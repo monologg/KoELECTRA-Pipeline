@@ -41,6 +41,24 @@ $ python3 test_nsmc.py
 $ python3 test_naver_ner.py
 ```
 
+## Example
+
+```python
+from transformers import ElectraTokenizer, pipeline
+from model import ElectraForSequenceClassification
+
+tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
+model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
+
+nsmc = pipeline(
+    "sentiment-analysis",
+    tokenizer=tokenizer,
+    model=model
+)
+
+print(nsmc("이 영화는 미쳤다. 넷플릭스가 일상화된 시대에 극장이 존재해야하는 이유를 증명해준다."))
+```
+
 ### Reference
 
 - [Huggingface Transformers](https://github.com/huggingface/transformers)
