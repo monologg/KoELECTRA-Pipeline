@@ -4,12 +4,12 @@ Transformers Pipeline with KoELECTRA
 
 ## Available Pipeline
 
-| Subtask   | Model           | Link                                                                                                       |
-| --------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| NSMC      | koelectra-base  | [koelectra-base-finetuned-nsmc](https://huggingface.co/monologg/koelectra-base-finetuned-nsmc)             |
-|           | koelectra-small | [koelectra-small-finetuned-nsmc](https://huggingface.co/monologg/koelectra-small-finetuned-nsmc)           |
-| Naver-NER | koelectra-base  | [koelectra-base-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-base-finetuned-naver-ner)   |
-|           | koelectra-small | [koelectra-small-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-small-finetuned-naver-ner) |
+| Subtask       | Model           | Link                                                                                                       |
+| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| **NSMC**      | koelectra-base  | [koelectra-base-finetuned-nsmc](https://huggingface.co/monologg/koelectra-base-finetuned-nsmc)             |
+|               | koelectra-small | [koelectra-small-finetuned-nsmc](https://huggingface.co/monologg/koelectra-small-finetuned-nsmc)           |
+| **Naver-NER** | koelectra-base  | [koelectra-base-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-base-finetuned-naver-ner)   |
+|               | koelectra-small | [koelectra-small-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-small-finetuned-naver-ner) |
 
 ## Fix Note
 
