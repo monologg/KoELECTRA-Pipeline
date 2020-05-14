@@ -6,8 +6,8 @@ Transformers Pipeline with KoELECTRA
 
 | Subtask       | Model           | Link                                                                                                       |
 | ------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| **NSMC**      | koelectra-base  | [koelectra-base-finetuned-nsmc](https://huggingface.co/monologg/koelectra-base-finetuned-nsmc)             |
-|               | koelectra-small | [koelectra-small-finetuned-nsmc](https://huggingface.co/monologg/koelectra-small-finetuned-nsmc)           |
+| **NSMC**      | koelectra-base  | [koelectra-base-finetuned-sentiment](https://huggingface.co/monologg/koelectra-base-finetuned-sentiment)   |
+|               | koelectra-small | [koelectra-small-finetuned-sentiment](https://huggingface.co/monologg/koelectra-small-finetuned-sentiment) |
 | **Naver-NER** | koelectra-base  | [koelectra-base-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-base-finetuned-naver-ner)   |
 |               | koelectra-small | [koelectra-small-finetuned-naver-ner](https://huggingface.co/monologg/koelectra-small-finetuned-naver-ner) |
 
@@ -43,12 +43,14 @@ $ python3 test_naver_ner.py
 
 ## Example
 
+### 1. NSMC
+
 ```python
 from transformers import ElectraTokenizer, pipeline
 from model import ElectraForSequenceClassification
 
-tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
-model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
+tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-sentiment")
+model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-finetuned-sentiment")
 
 nsmc = pipeline(
     "sentiment-analysis",
@@ -57,6 +59,24 @@ nsmc = pipeline(
 )
 
 print(nsmc("이 영화는 미쳤다. 넷플릭스가 일상화된 시대에 극장이 존재해야하는 이유를 증명해준다."))
+```
+
+### 2. Naver-NER
+
+```python
+from transformers import ElectraTokenizer, ElectraForTokenClassification
+from ner_pipeline import NerPipeline
+
+tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-naver-ner")
+model = ElectraForTokenClassification.from_pretrained("monologg/koelectra-small-finetuned-naver-ner")
+
+ner = NerPipeline(model=model,
+                  tokenizer=tokenizer,
+                  ignore_labels=[],
+                  ignore_special_tokens=True)
+
+
+print(ner("2009년 7월 FC서울을 떠나 잉글랜드 프리미어리그 볼턴 원더러스로 이적한 이청용은 크리스탈 팰리스와 독일 분데스리가2 VfL 보훔을 거쳐 지난 3월 K리그로 컴백했다. 행선지는 서울이 아닌 울산이었다"))
 ```
 
 ### Reference

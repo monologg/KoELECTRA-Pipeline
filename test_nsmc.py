@@ -2,8 +2,8 @@ from transformers import ElectraTokenizer, pipeline
 from model import ElectraForSequenceClassification
 from pprint import pprint
 
-tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
-model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-finetuned-nsmc")
+tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-sentiment")
+model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-finetuned-sentiment")
 
 nsmc = pipeline(
     "sentiment-analysis",
