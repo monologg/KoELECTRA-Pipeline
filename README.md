@@ -1,6 +1,6 @@
 # KoELECTRA-Pipeline
 
-Transformers Pipeline with KoELECTRA
+`Transformers Pipeline` with KoELECTRA
 
 ## Available Pipeline
 
@@ -59,6 +59,9 @@ nsmc = pipeline(
 )
 
 print(nsmc("이 영화는 미쳤다. 넷플릭스가 일상화된 시대에 극장이 존재해야하는 이유를 증명해준다."))
+
+# Out
+[{'label': 'positive', 'score': 0.8636718392372131}]
 ```
 
 ### 2. Naver-NER
@@ -66,6 +69,7 @@ print(nsmc("이 영화는 미쳤다. 넷플릭스가 일상화된 시대에 극�
 ```python
 from transformers import ElectraTokenizer, ElectraForTokenClassification
 from ner_pipeline import NerPipeline
+from pprint import pprint
 
 tokenizer = ElectraTokenizer.from_pretrained("monologg/koelectra-small-finetuned-naver-ner")
 model = ElectraForTokenClassification.from_pretrained("monologg/koelectra-small-finetuned-naver-ner")
@@ -76,7 +80,34 @@ ner = NerPipeline(model=model,
                   ignore_special_tokens=True)
 
 
-print(ner("2009년 7월 FC서울을 떠나 잉글랜드 프리미어리그 볼턴 원더러스로 이적한 이청용은 크리스탈 팰리스와 독일 분데스리가2 VfL 보훔을 거쳐 지난 3월 K리그로 컴백했다. 행선지는 서울이 아닌 울산이었다"))
+pprint(ner("2009년 7월 FC서울을 떠나 잉글랜드 프리미어리그 볼턴 원더러스로 이적한 이청용은 크리스탈 팰리스와 독일 분데스리가2 VfL 보훔을 거쳐 지난 3월 K리그로 컴백했다. 행선지는 서울이 아닌 울산이었다"))
+
+# Out
+[{'entity': 'DAT-B', 'score': 0.9996234178543091, 'word': '2009년'},
+ {'entity': 'DAT-I', 'score': 0.93541419506073, 'word': '7월'},
+ {'entity': 'ORG-B', 'score': 0.9994615912437439, 'word': 'FC서울을'},
+ {'entity': 'O', 'score': 0.999957799911499, 'word': '떠나'},
+ {'entity': 'LOC-B', 'score': 0.9983285069465637, 'word': '잉글랜드'},
+ {'entity': 'ORG-B', 'score': 0.9989873766899109, 'word': '프리미어리그'},
+ {'entity': 'ORG-B', 'score': 0.9315412044525146, 'word': '볼턴'},
+ {'entity': 'ORG-I', 'score': 0.9993480443954468, 'word': '원더러스로'},
+ {'entity': 'O', 'score': 0.9999217987060547, 'word': '이적한'},
+ {'entity': 'PER-B', 'score': 0.9994915127754211, 'word': '이청용은'},
+ {'entity': 'ORG-B', 'score': 0.999463677406311, 'word': '크리스탈'},
+ {'entity': 'ORG-I', 'score': 0.999179482460022, 'word': '팰리스와'},
+ {'entity': 'LOC-B', 'score': 0.9977350234985352, 'word': '독일'},
+ {'entity': 'ORG-B', 'score': 0.9813936352729797, 'word': '분데스리가2'},
+ {'entity': 'ORG-B', 'score': 0.8733143210411072, 'word': 'VfL'},
+ {'entity': 'ORG-I', 'score': 0.9937891960144043, 'word': '보훔을'},
+ {'entity': 'O', 'score': 0.9999728202819824, 'word': '거쳐'},
+ {'entity': 'DAT-B', 'score': 0.9963461756706238, 'word': '지난'},
+ {'entity': 'DAT-I', 'score': 0.9909392595291138, 'word': '3월'},
+ {'entity': 'ORG-B', 'score': 0.9995419383049011, 'word': 'K리그로'},
+ {'entity': 'O', 'score': 0.9999108910560608, 'word': '컴백했다.'},
+ {'entity': 'O', 'score': 0.9993030428886414, 'word': '행선지는'},
+ {'entity': 'ORG-B', 'score': 0.9915705323219299, 'word': '서울이'},
+ {'entity': 'O', 'score': 0.9999194741249084, 'word': '아닌'},
+ {'entity': 'ORG-B', 'score': 0.9994401931762695, 'word': '울산이었다'}]
 ```
 
 ### Reference
