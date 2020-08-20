@@ -31,6 +31,7 @@
 ```bash
 $ python3 test_nsmc.py
 $ python3 test_naver_ner.py
+$ python3 test_korquad.py
 ```
 
 ## Example
